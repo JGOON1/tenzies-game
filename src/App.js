@@ -14,13 +14,17 @@ function App() {
     const diceArray = [];
     for(let i = 0; i < 10; i++) {
       diceArray.push({
-        value: generateRandomNumber()
+        value: generateRandomNumber(),
+        isHeld: false
       })
     }
     return diceArray;
   }
 
-  console.log(newDiceRoll())
+  function reRollDice() {
+    setDice(newDiceRoll())
+  }
+
 
   const diceElements = dice.map(die => {
     return <Die value={die.value} />
@@ -34,6 +38,7 @@ function App() {
       <div className='dice-container'>
         {diceElements}
       </div>
+      <button onClick={reRollDice} className='roll-button'>Roll</button>
     </main>
   );
 }
